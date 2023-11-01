@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Turnero Digital</title>
+ <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+
+<body>
+    <nav class="navegacion">
+        <a href="inicio.html">Inicio</a>
+        <a href="index.html">Turnero Digital</a>
+    </nav>
+    <h1><b>TURNERO DIGITAL</b></h1>
+
+
+    <form id="turnoForm">
+        <label for="nombre">Nombre y apellido:</label>
+        <input type="text" id="nombre" required><br>
+
+        <label for="dni">DNI:</label>
+        <input type="text" id="dni" required><br>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" required><br>
+
+        <label for="motivo">Motivo:</label>
+        <input type="text" id="motivo" required><br>
+
+        <button type="button" onclick="generarTurno()">Generar Turno</button>
+    </form>
+
+    <div id="turnoGenerado" style="display: none;">
+        <h2>¡Turno Generado!</h2>
+        <p>Nombre y Apellido: <span id="mostrarNombre"></span></p>
+        <p>DNI: <span id="mostrarDni"></span></p>
+        <p>Teléfono: <span id="mostrarTelefono"></span></p>
+        <p>Motivo: <span id="mostrarMotivo"></span></p>
+        <p>Fecha del Turno: <span id="fechaTurno"></span></p>
+        <p>Acerquese a la recepción y consulte para más información. Lo esperamos!!</p>
+
+    </div>
+
+    <script>
+        function generarTurno() {
+            const nombre = document.getElementById("nombre").value;
+            const dni = document.getElementById("dni").value;
+            const telefono = document.getElementById("telefono").value;
+            const motivo = document.getElementById("motivo").value;
+
+            const fechaTurno = new Date();
+            fechaTurno.setDate(fechaTurno.getDate() + 7); // Añade 7 días a la fecha actual
+
+            const dia = fechaTurno.getDate();
+            const mes = fechaTurno.getMonth() + 1; // Sumar 1 porque los meses se indexan desde 0
+            const año = fechaTurno.getFullYear();
+
+            const fechaFormateada = `${dia}/${mes}/${año}`;
+
+            document.getElementById("mostrarNombre").textContent = nombre;
+            document.getElementById("mostrarDni").textContent = dni;
+            document.getElementById("mostrarTelefono").textContent = telefono;
+            document.getElementById("mostrarMotivo").textContent = motivo;
+            document.getElementById("fechaTurno").textContent = fechaFormateada;
+
+            document.getElementById("turnoGenerado").style.display = "block";
+
+            // Limpiar el formulario
+            document.getElementById("turnoForm").reset();
+        }
+    </script>
+</body>
+</html>
